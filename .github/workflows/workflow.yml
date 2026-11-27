@@ -1,0 +1,16 @@
+name: workflow
+on: push
+  runs-on: ubuntu-latest
+  jobs:
+    job1:
+      steps:
+        uses: actions/checkout@v5
+        name: Instalar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+        name: Compilar Java
+        run: javac -d out src/Hola.java
+        name: Crear jar
+        run: jar cf jar_hola.jar -C build .
